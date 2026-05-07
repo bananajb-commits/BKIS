@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>物理公式 完全マスター参考書（高校物理）</title>
+    <meta
+      name="description"
+      content="高校物理（力学・波動・電磁気・原子）の主要公式と記号・語源を、MathJax対応のHTML参考書として整理。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- MathJax: render $...$ and \(...\) inline, $$...$$ display -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <header class="topbar">
+      <div class="topbar__inner">
+        <div class="brand">
+          <div class="brand__title">物理公式 完全マスター</div>
+          <div class="brand__subtitle">公式・記号・語源を「意味」で覚える高校物理</div>
+        </div>
+        <div class="topbar__actions">
+          <label class="search">
+            <span class="search__label">検索</span>
+            <input id="searchInput" class="search__input" type="search" placeholder="例：運動量 / τ / 屈折率 / ドップラー" />
+          </label>
+          <button id="toggleToc" class="btn" type="button" aria-expanded="true" aria-controls="toc">
+            目次
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside id="toc" class="toc" aria-label="目次">
+        <nav class="toc__nav">
+          <div class="toc__title">目次</div>
+          <ol class="toc__list">
+            <li><a href="#intro">序文：数理と言語の源泉</a></li>
+            <li>
+              <a href="#ch1">第I章：運動とエネルギー</a>
+              <ol>
+                <li><a href="#ch1-s1">1. 平面運動と放物運動</a></li>
+                <li><a href="#ch1-s2">2. 剛体のつりあい</a></li>
+                <li><a href="#ch1-s3">3. 運動量の保存</a></li>
+                <li><a href="#ch1-s4">4. 円運動と単振動</a></li>
+                <li><a href="#ch1-s5">5. 気体の性質と分子の運動</a></li>
+              </ol>
+            </li>
+            <li>
+              <a href="#ch2">第II章：波動</a>
+              <ol>
+                <li><a href="#ch2-s1">1. 波の性質</a></li>
+                <li><a href="#ch2-s2">2. 音波</a></li>
+                <li><a href="#ch2-s3">3. 光波</a></li>
+              </ol>
+            </li>
+            <li>
+              <a href="#ch3">第III章：電気と磁気</a>
+              <ol>
+                <li><a href="#ch3-s1">1. 電場と電位</a></li>
+                <li><a href="#ch3-s2">2. 電流</a></li>
+                <li><a href="#ch3-s3">3. 電流と磁場</a></li>
+                <li><a href="#ch3-s4">4. 電磁誘導と交流</a></li>
+              </ol>
+            </li>
+            <li>
+              <a href="#ch4">第IV章：原子</a>
+              <ol>
+                <li><a href="#ch4-s1">1. 電子と光</a></li>
+                <li><a href="#ch4-s2">2. 原子と原子核</a></li>
+              </ol>
+            </li>
+            <li><a href="#conclusion">結論：数式と言語の統一的理解</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <main id="main" class="content">
+        <article class="book" id="bookRoot">
+          <section id="intro" class="section">
+            <h1>物理学の記述体系における数理と言語的源泉</h1>
+            <p class="lead">
+              物理学は、自然界の諸現象を<strong>数学という言語</strong>を用いて記述する学問である。数式を構成する記号（シンボル）は単なる省略ではなく、歴史的・哲学的背景を持つ。
+              本書は、高校物理の主要4領域（運動とエネルギー／波動／電気と磁気／原子）を横断し、主要公式の解説とともに、記号の語源と物理的意義を整理する。
+            </p>
+            <div class="callout">
+              <div class="callout__title">使い方</div>
+              <ul>
+                <li><strong>検索</strong>で「量（例：運動量）」「記号（例：τ）」「法則名（例：スネル）」を探せます。</li>
+                <li><strong>式は $...$</strong> のLaTeX表記で入力されており、自動で整形表示されます。</li>
+                <li><strong>記号表</strong>は「単位」「語源」「解釈」をセットで確認できるようにしています。</li>
+              </ul>
+            </div>
+          </section>
+
+          <hr class="divider" />
+
+          <section id="ch1" class="section">
+            <h2>第I章：運動とエネルギー</h2>
+            <p>
+              力学は古典物理学の基盤であり、位置が時間とともにどう変わるかを定義することから始まる。
+              この分野の記号は、直感的意味を反映するものが多く、たとえば速度 $v$ は Velocity（<span class="latin">velocitas</span>）に、質量 $m$ は mass に源泉を持つ。
+            </p>
+
+            <section id="ch1-s1" class="subsection">
+              <h3>第1節：平面運動と放物運動</h3>
+              <p>
+                変位・速度・加速度は<strong>ベクトル量</strong>として理解する。等加速度直線運動では、加速度一定を前提に、速度と変位を時間の関数で表す。
+              </p>
+
+              <div class="grid">
+                <div class="card">
+                  <div class="card__title">運動学の基本公式（等加速度）</div>
+                  <ul class="formula-list">
+                    <li><span class="label">速度と時間</span> <span class="fx">$v = v_0 + at$</span></li>
+                    <li><span class="label">変位と時間</span> <span class="fx">$x = v_0t + \frac{1}{2}at^2$</span></li>
+                    <li><span class="label">時間を消去</span> <span class="fx">$v^2 - v_0^2 = 2ax$</span></li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <div class="card__title">ポイント</div>
+                  <ul>
+                    <li><strong>$\Delta$</strong>（デルタ）は「差・増分」。変化を追跡するための最小道具。</li>
+                    <li><strong>$g$</strong> は Gravity の頭文字。地表近くで一定とみなす近似が強力。</li>
+                    <li><strong>Velocity</strong> を選ぶのは「向き（方向）」を含む量として速度を扱うため。</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card__title">記号・単位・語源（代表）</div>
+                <div class="table-wrap">
+                  <table class="tbl">
+                    <thead>
+                      <tr>
+                        <th>物理量</th>
+                        <th>記号</th>
+                        <th>単位（SI）</th>
+                        <th>語源（英/ラテン/ギリシャ）</th>
+                        <th>解説</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>変位</td>
+                        <td>$x, y$</td>
+                        <td>$[m]$</td>
+                        <td>Coordinate</td>
+                        <td>座標軸上の位置（差が変位）。</td>
+                      </tr>
+                      <tr>
+                        <td>時間</td>
+                        <td>$t$</td>
+                        <td>$[s]$</td>
+                        <td>Time</td>
+                        <td>現象の経過。</td>
+                      </tr>
+                      <tr>
+                        <td>速度</td>
+                        <td>$v$</td>
+                        <td>$[m/s]$</td>
+                        <td>Velocity / <span class="latin">velocitas</span></td>
+                        <td>単位時間あたりの変位（向きも含む）。</td>
+                      </tr>
+                      <tr>
+                        <td>加速度</td>
+                        <td>$a$</td>
+                        <td>$[m/s^2]$</td>
+                        <td>Acceleration</td>
+                        <td>単位時間あたりの速度変化。</td>
+                      </tr>
+                      <tr>
+                        <td>初速度</td>
+                        <td>$v_0$</td>
+                        <td>$[m/s]$</td>
+                        <td>添字 $0$（初期値）</td>
+                        <td>$t=0$ の速度。</td>
+                      </tr>
+                      <tr>
+                        <td>変化量</td>
+                        <td>$\Delta$</td>
+                        <td>—</td>
+                        <td>Delta（ギリシャ文字）</td>
+                        <td>増分・差（差分で法則が見える）。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <section id="ch1-s2" class="subsection">
+              <h3>第2節：剛体のつりあい</h3>
+              <p>
+                剛体では平行移動だけでなく回転の平衡が必要。そこで<strong>力のモーメント（トルク）</strong>を導入する。
+              </p>
+
+              <div class="card">
+                <div class="card__title">モーメントと重心の公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">力のモーメント</span> <span class="fx">$M = F \cdot l$</span></li>
+                  <li><span class="label">つりあい条件</span> <span class="fx">$\sum F = 0,\ \sum M = 0$</span></li>
+                  <li>
+                    <span class="label">重心</span>
+                    <span class="fx">$x_G = \frac{m_1x_1 + m_2x_2 + \cdots}{m_1 + m_2 + \cdots}$</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <div class="card__title">記号・単位・語源（代表）</div>
+                <div class="table-wrap">
+                  <table class="tbl">
+                    <thead>
+                      <tr>
+                        <th>物理量</th>
+                        <th>記号</th>
+                        <th>単位（SI）</th>
+                        <th>語源</th>
+                        <th>解説</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>力</td>
+                        <td>$F$</td>
+                        <td>$[N]$</td>
+                        <td>Force</td>
+                        <td>運動状態を変える原因。</td>
+                      </tr>
+                      <tr>
+                        <td>質量</td>
+                        <td>$m$</td>
+                        <td>$[kg]$</td>
+                        <td>Mass</td>
+                        <td>動きにくさ（慣性）の尺度。</td>
+                      </tr>
+                      <tr>
+                        <td>モーメント</td>
+                        <td>$M,\ \tau$</td>
+                        <td>$[N\cdot m]$</td>
+                        <td>Moment / Torque</td>
+                        <td>$\tau$（タウ）は torque に対応する記号として好まれる。</td>
+                      </tr>
+                      <tr>
+                        <td>腕の長さ</td>
+                        <td>$l,\ r$</td>
+                        <td>$[m]$</td>
+                        <td>Length / Radius</td>
+                        <td>回転軸から作用線までの距離。</td>
+                      </tr>
+                      <tr>
+                        <td>重心</td>
+                        <td>$G,\ CM$</td>
+                        <td>—</td>
+                        <td>Gravity / Center of Mass</td>
+                        <td>加重平均としての「一点」。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <section id="ch1-s3" class="subsection">
+              <h3>第3節：運動量の保存</h3>
+              <p>
+                衝突・分裂などで強力な道具となるのが運動量保存。外力が働かない系では、全運動量が不変となる。
+              </p>
+              <div class="grid">
+                <div class="card">
+                  <div class="card__title">運動量と力積</div>
+                  <ul class="formula-list">
+                    <li><span class="label">運動量</span> <span class="fx">$p = mv$</span></li>
+                    <li><span class="label">力積</span> <span class="fx">$I = F\Delta t$</span></li>
+                    <li><span class="label">変化＝力積</span> <span class="fx">$mv' - mv = F\Delta t$</span></li>
+                    <li><span class="label">反発係数</span> <span class="fx">$e = -\frac{v_1' - v_2'}{v_1 - v_2}$</span></li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <div class="card__title">語源メモ</div>
+                  <ul>
+                    <li><strong>$p$</strong>：<span class="latin">petere</span>（向かう）由来説が有力。impetus（勢い）から整理されて定着。</li>
+                    <li><strong>保存則</strong>：空間の平行移動対称性と深く関係（ノーターの定理の入口）。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section id="ch1-s4" class="subsection">
+              <h3>第4節：円運動と単振動</h3>
+              <p>
+                周期運動は波や原子振動の基礎。角速度と向心加速度で「回転の速さ」を定量化する。単振動は復元力が変位に比例する近似モデル。
+              </p>
+
+              <div class="card">
+                <div class="card__title">円運動・単振動・万有引力</div>
+                <ul class="formula-list">
+                  <li><span class="label">角速度</span> <span class="fx">$\omega = \frac{\Delta \theta}{\Delta t}$</span></li>
+                  <li><span class="label">向心加速度</span> <span class="fx">$a = r\omega^2 = \frac{v^2}{r}$</span></li>
+                  <li><span class="label">向心力</span> <span class="fx">$F = mr\omega^2$</span></li>
+                  <li><span class="label">復元力</span> <span class="fx">$F = -kx$</span></li>
+                  <li><span class="label">万有引力</span> <span class="fx">$F = G \frac{Mm}{r^2}$</span></li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <div class="callout__title">符号の意味</div>
+                <p>
+                  $F=-kx$ のマイナスは「常に元の位置へ戻す向き」を示す。式の形に、安定性（平衡へ戻る性質）が刻まれている。
+                </p>
+              </div>
+            </section>
+
+            <section id="ch1-s5" class="subsection">
+              <h3>第5節：気体の性質と分子の運動</h3>
+              <p>
+                ミクロな分子運動が、マクロな圧力 $P$ や温度 $T$ として現れる。状態方程式は「量のスケール合わせ」の式でもある。
+              </p>
+
+              <div class="card">
+                <div class="card__title">気体分子運動論の公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">ボイル・シャルル</span> <span class="fx">$\frac{PV}{T} = const.$</span></li>
+                  <li><span class="label">理想気体</span> <span class="fx">$PV = nRT$</span></li>
+                  <li><span class="label">平均運動エネルギー</span> <span class="fx">$\frac{1}{2}m\overline{v^2} = \frac{3}{2}kT$</span></li>
+                  <li><span class="label">内部エネルギー（単原子）</span> <span class="fx">$U = \frac{3}{2}nRT$</span></li>
+                </ul>
+              </div>
+            </section>
+          </section>
+
+          <hr class="divider" />
+
+          <section id="ch2" class="section">
+            <h2>第II章：波動</h2>
+            <p>
+              波動は媒質そのものが移動するのではなく、振動という「状態」が伝播する現象。位相・干渉など幾何学的性質が中心となる。
+            </p>
+
+            <section id="ch2-s1" class="subsection">
+              <h3>第1節：波の性質</h3>
+              <div class="grid">
+                <div class="card">
+                  <div class="card__title">波の基本公式</div>
+                  <ul class="formula-list">
+                    <li><span class="label">波の速さ</span> <span class="fx">$v = f\lambda = \frac{\lambda}{T}$</span></li>
+                    <li>
+                      <span class="label">正弦波</span>
+                      <span class="fx">$y = A \sin 2\pi \left(\frac{t}{T} - \frac{x}{\lambda}\right)$</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <div class="card__title">記号の由来</div>
+                  <ul>
+                    <li><strong>$\lambda$</strong>（ラムダ）：波長に標準化。光学の発展とともに定着。</li>
+                    <li><strong>$f$ / $\nu$</strong>：frequency と、量子以降で用いられるニュー（文脈依存で使い分け）。</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section id="ch2-s2" class="subsection">
+              <h3>第2節：音波</h3>
+              <div class="card">
+                <div class="card__title">音の公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">ドップラー効果</span> <span class="fx">$f' = f \frac{V \pm v_o}{V \mp v_s}$</span></li>
+                  <li><span class="label">うなり</span> <span class="fx">$n = |f_1 - f_2|$</span></li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="ch2-s3" class="subsection">
+              <h3>第3節：光波</h3>
+              <p>
+                光は電磁波であり、波動性と粒子性を併せ持つ。高校物理では反射・屈折・干渉が主題。
+              </p>
+
+              <div class="card">
+                <div class="card__title">光学の主要公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">スネルの法則</span> <span class="fx">$n_1 \sin \theta_1 = n_2 \sin \theta_2$</span></li>
+                  <li>
+                    <span class="label">屈折率と速さ</span>
+                    <span class="fx">$n_{12} = \frac{n_2}{n_1} = \frac{v_1}{v_2} = \frac{\lambda_1}{\lambda_2}$</span>
+                  </li>
+                  <li><span class="label">レンズ</span> <span class="fx">$\frac{1}{a} + \frac{1}{b} = \frac{1}{f}$</span></li>
+                  <li><span class="label">ヤング（明線）</span> <span class="fx">$d \frac{x}{L} = m\lambda$</span></li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <div class="callout__title">同じ $f$ に注意</div>
+                <p>
+                  レンズの焦点距離の $f$（focal）と、振動数の $f$（frequency）は同じ文字でも意味が違う。単位（m / Hz）で区別するのが安全。
+                </p>
+              </div>
+            </section>
+          </section>
+
+          <hr class="divider" />
+
+          <section id="ch3" class="section">
+            <h2>第III章：電気と磁気</h2>
+            <p>
+              電磁気学は「場（Field）」という抽象概念を数理モデル化する分野。記号体系はマクスウェルなどの整理の影響が大きい。
+            </p>
+
+            <section id="ch3-s1" class="subsection">
+              <h3>第1節：電場と電位</h3>
+              <div class="card">
+                <div class="card__title">静電気の主要公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">クーロン</span> <span class="fx">$F = k \frac{Q_1Q_2}{r^2}$</span></li>
+                  <li><span class="label">電場</span> <span class="fx">$E = \frac{F}{q} = k \frac{Q}{r^2}$</span></li>
+                  <li><span class="label">電位</span> <span class="fx">$V = \frac{U}{q} = k \frac{Q}{r}$</span></li>
+                  <li><span class="label">コンデンサ</span> <span class="fx">$Q = CV$</span></li>
+                  <li><span class="label">平行板</span> <span class="fx">$C = \epsilon \frac{S}{d}$</span></li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="ch3-s2" class="subsection">
+              <h3>第2節：電流</h3>
+              <div class="card">
+                <div class="card__title">回路の主要公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">オーム</span> <span class="fx">$V = IR$</span></li>
+                  <li><span class="label">ジュール</span> <span class="fx">$Q = I^2Rt$</span></li>
+                  <li><span class="label">キルヒホッフ</span> <span class="fx">$\sum I_{in} = \sum I_{out},\ \sum V = 0$</span></li>
+                  <li><span class="label">抵抗率</span> <span class="fx">$R = \rho \frac{l}{S}$</span></li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <div class="callout__title">$I$ の由来</div>
+                <p>
+                  電流が $I$ なのは、アンペールが「電流の強さ（<span class="latin">Intensité du courant</span>）」と呼んだ歴史を反映する。
+                </p>
+              </div>
+            </section>
+
+            <section id="ch3-s3" class="subsection">
+              <h3>第3節：電流と磁場</h3>
+              <div class="card">
+                <div class="card__title">磁気の主要公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">電流が受ける力</span> <span class="fx">$F = IBl \sin \theta$</span></li>
+                  <li><span class="label">ローレンツ力</span> <span class="fx">$F = qvB \sin \theta$</span></li>
+                  <li><span class="label">磁束</span> <span class="fx">$\Phi = BS$</span></li>
+                  <li><span class="label">直線電流の磁場</span> <span class="fx">$H = \frac{I}{2\pi r}$</span></li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <div class="callout__title">$B$ の歴史的偶然</div>
+                <p>
+                  磁束密度 $B$ は、マクスウェルが変数をアルファベット順に割り当てた整理の中で、磁気誘導に $B$ が対応したことが定着の一因とされる。
+                </p>
+              </div>
+            </section>
+
+            <section id="ch3-s4" class="subsection">
+              <h3>第4節：電磁誘導と交流</h3>
+              <div class="card">
+                <div class="card__title">電磁誘導と交流</div>
+                <ul class="formula-list">
+                  <li><span class="label">ファラデー</span> <span class="fx">$V = -N \frac{\Delta \Phi}{\Delta t}$</span></li>
+                  <li><span class="label">自己誘導</span> <span class="fx">$V = -L \frac{\Delta I}{\Delta t}$</span></li>
+                  <li><span class="label">交流（位相差）</span> <span class="fx">$V = V_0 \sin \omega t,\ I = I_0 \sin (\omega t - \phi)$</span></li>
+                  <li><span class="label">変圧器</span> <span class="fx">$\frac{V_1}{V_2} = \frac{N_1}{N_2}$</span></li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <div class="callout__title">マイナス符号（レンツの法則）</div>
+                <p>
+                  マイナスは「変化を打ち消す向きに誘導が起きる」という自然の保守性（エネルギー保存の現れ）を表す。
+                </p>
+              </div>
+            </section>
+          </section>
+
+          <hr class="divider" />
+
+          <section id="ch4" class="section">
+            <h2>第IV章：原子</h2>
+            <p>
+              近代物理は、連続の世界観を越え、エネルギーと物質が量子（不連続）で記述されることを示した。
+            </p>
+
+            <section id="ch4-s1" class="subsection">
+              <h3>第1節：電子と光</h3>
+              <div class="card">
+                <div class="card__title">量子論の主要公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">光子エネルギー</span> <span class="fx">$E = hf = h\nu$</span></li>
+                  <li><span class="label">光電効果</span> <span class="fx">$hf = W + K_{max}$</span></li>
+                  <li><span class="label">ド・ブロイ</span> <span class="fx">$\lambda = \frac{h}{p} = \frac{h}{mv}$</span></li>
+                  <li><span class="label">ブラッグ</span> <span class="fx">$2d \sin \theta = n\lambda$</span></li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="ch4-s2" class="subsection">
+              <h3>第2節：原子と原子核</h3>
+              <div class="card">
+                <div class="card__title">原子物理の主要公式</div>
+                <ul class="formula-list">
+                  <li><span class="label">ボーア量子化</span> <span class="fx">$mvr = n \frac{h}{2\pi}$</span></li>
+                  <li><span class="label">エネルギー準位</span> <span class="fx">$E_n = - \frac{13.6}{n^2}\,[eV]$</span></li>
+                  <li><span class="label">質量エネルギー</span> <span class="fx">$E = mc^2$</span></li>
+                  <li><span class="label">結合エネルギー</span> <span class="fx">$\Delta E = (\Delta m)c^2$</span></li>
+                  <li><span class="label">半減期</span> <span class="fx">$N = N_0 \left(\frac{1}{2}\right)^{t/T}$</span></li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <div class="callout__title">質量欠損の読み方</div>
+                <p>
+                  「合計質量 − 実際の核の質量」＝ $\Delta m$ が、$\Delta E$ として放出された（＝系の結合に使われた）と解釈する。
+                </p>
+              </div>
+            </section>
+          </section>
+
+          <hr class="divider" />
+
+          <section id="conclusion" class="section">
+            <h2>結論：数式と言語の統一的理解</h2>
+            <p>
+              公式を「代入の型」としてではなく、記号が何を象徴し、どんな次元（単位）を持つかを吟味すると、物理的直感が育つ。
+              $\Delta$ があれば原因（力・エネルギーの出入り）を疑い、$\epsilon,\mu$ があれば物質や空間の個性を読む。
+              数式は秩序を記述する詩であり、記号は深淵へ繋がる文字である。
+            </p>
+            <div class="footer-note">
+              <p>
+                このHTML版は「1ページ完結・検索可能・MathJax対応」でまず全体像を固めた版です。
+                次は「演習（典型問題）」「単位チェック」「次元解析」「暗記カード」などを章ごとに追加して強化できます。
+              </p>
+            </div>
+          </section>
+        </article>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
