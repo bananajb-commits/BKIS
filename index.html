@@ -4,35 +4,204 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>物理公式 完全マスター参考書（高校物理）</title>
-    <meta
-      name="description"
-      content="高校物理（力学・波動・電磁気・原子）の主要公式と記号・語源を、MathJax対応のHTML参考書として整理。"
-    />
-    <link rel="stylesheet" href="./styles.css" />
+    <meta name="description" content="高校物理（力学・波動・電磁気・原子）の主要公式と記号・語源を、MathJax対応のHTML参考書として整理。" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- MathJax: render $...$ and \(...\) inline, $$...$$ display -->
+    <!-- MathJax -->
     <script>
       window.MathJax = {
         tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
-          ],
-          displayMath: [
-            ["$$", "$$"],
-            ["\\[", "\\]"],
-          ],
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
           processEscapes: true,
         },
         options: {
-          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+          skipHtmlTags:["script", "noscript", "style", "textarea", "pre", "code"],
         },
       };
     </script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+      /* --- CSS Variables --- */
+      :root {
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --bg-body: #f8fafc;
+        --bg-surface: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --callout-bg: #eff6ff;
+        --callout-border: #3b82f6;
+        --font-base: 'Noto Sans JP', sans-serif;
+      }
+
+      /* --- Base --- */
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-base);
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        line-height: 1.7;
+        margin: 0;
+        padding: 0;
+      }
+      h1, h2, h3 { color: #0f172a; margin-top: 0; }
+      h2 { border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-top: 2.5rem; }
+      h3 { margin-top: 2rem; color: #334155; }
+      p { margin-bottom: 1rem; }
+      a { color: var(--primary); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .skip-link { position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px; z-index: 1000; }
+      .skip-link:focus { top: 0; }
+
+      /* --- Topbar --- */
+      .topbar {
+        position: sticky;
+        top: 0;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+        padding: 0.75rem 1.5rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      }
+      .topbar__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .brand__title { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+      .brand__subtitle { font-size: 0.8rem; color: var(--text-muted); }
+      .topbar__actions { display: flex; gap: 1rem; align-items: center; }
+      
+      /* Search & Button */
+      .search { display: flex; align-items: center; gap: 0.5rem; }
+      .search__label { font-size: 0.9rem; font-weight: 600; }
+      .search__input {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        outline: none;
+        width: 250px;
+        transition: border-color 0.2s;
+      }
+      .search__input:focus { border-color: var(--primary); }
+      .btn {
+        background: var(--primary); color: white; border: none;
+        padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;
+        font-weight: 600; transition: background 0.2s;
+      }
+      .btn:hover { background: var(--primary-hover); text-decoration: none; }
+      #toggleToc { display: none; } /* PCでは非表示 */
+
+      /* --- Layout --- */
+      .layout {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        gap: 3rem;
+      }
+
+      /* --- Sidebar (TOC) --- */
+      .toc {
+        width: 260px;
+        flex-shrink: 0;
+        position: sticky;
+        top: 100px;
+        height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+      .toc__title { font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
+      .toc__list { list-style: none; padding: 0; margin: 0; font-size: 0.95rem; }
+      .toc__list li { margin-bottom: 0.5rem; }
+      .toc__list ol { list-style: none; padding-left: 1rem; margin-top: 0.5rem; border-left: 2px solid var(--border); }
+      .toc__list a { color: var(--text-muted); display: block; padding: 0.2rem 0; transition: color 0.2s; }
+      .toc__list a:hover { color: var(--primary); text-decoration: none; }
+
+      /* --- Main Content --- */
+      .content { flex-grow: 1; min-width: 0; }
+      .lead { font-size: 1.1rem; color: #475569; }
+      .divider { border: 0; height: 1px; background: var(--border); margin: 3rem 0; }
+
+      /* --- Components --- */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+      }
+      .card:hover { transform: translateY(-2px); }
+      .card__title {
+        font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;
+        border-bottom: 2px solid var(--bg-body); padding-bottom: 0.5rem;
+      }
+
+      /* Formula List */
+      .formula-list { list-style: none; padding: 0; margin: 0; }
+      .formula-list li {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.75rem 0; border-bottom: 1px dashed var(--border);
+      }
+      .formula-list li:last-child { border-bottom: none; padding-bottom: 0; }
+      .label { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; }
+      .fx { font-size: 1.1rem; }
+
+      /* Callout */
+      .callout {
+        background: var(--callout-bg);
+        border-left: 4px solid var(--callout-border);
+        padding: 1.25rem 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1.5rem 0;
+      }
+      .callout__title { font-weight: 700; color: var(--callout-border); margin-bottom: 0.5rem; }
+      .callout ul { margin: 0; padding-left: 1.5rem; }
+
+      /* Table */
+      .table-wrap { overflow-x: auto; }
+      .tbl { width: 100%; border-collapse: collapse; font-size: 0.95rem; white-space: nowrap; }
+      .tbl th, .tbl td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+      .tbl th { background: var(--bg-body); font-weight: 600; color: var(--text-main); }
+      .tbl tbody tr:hover { background: #f8fafc; }
+      .latin { font-style: italic; color: #64748b; }
+
+      /* Footer Note */
+      .footer-note { margin-top: 3rem; padding: 1.5rem; background: #e2e8f0; border-radius: 8px; text-align: center; font-size: 0.9rem; }
+
+      /* --- Responsive --- */
+      @media (max-width: 860px) {
+        .layout { flex-direction: column; padding: 1.5rem 1rem; gap: 1.5rem; }
+        #toggleToc { display: block; }
+        .toc { 
+          width: 100%; height: auto; position: static; 
+          display: none; background: var(--bg-surface); 
+          padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border);
+        }
+        .toc.is-active { display: block; }
+        .search__input { width: 100%; }
+        .topbar__actions { width: 100%; justify-content: space-between; }
+        .search { flex-grow: 1; }
+        .formula-list li { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      }
+    </style>
   </head>
 
   <body>
@@ -47,11 +216,9 @@
         <div class="topbar__actions">
           <label class="search">
             <span class="search__label">検索</span>
-            <input id="searchInput" class="search__input" type="search" placeholder="例：運動量 / τ / 屈折率 / ドップラー" />
+            <input id="searchInput" class="search__input" type="search" placeholder="例：運動量 / τ / 屈折率" />
           </label>
-          <button id="toggleToc" class="btn" type="button" aria-expanded="true" aria-controls="toc">
-            目次
-          </button>
+          <button id="toggleToc" class="btn" type="button">目次</button>
         </div>
       </div>
     </header>
@@ -110,10 +277,10 @@
               本書は、高校物理の主要4領域（運動とエネルギー／波動／電気と磁気／原子）を横断し、主要公式の解説とともに、記号の語源と物理的意義を整理する。
             </p>
             <div class="callout">
-              <div class="callout__title">使い方</div>
+              <div class="callout__title">💡 使い方</div>
               <ul>
-                <li><strong>検索</strong>で「量（例：運動量）」「記号（例：τ）」「法則名（例：スネル）」を探せます。</li>
-                <li><strong>式は $...$</strong> のLaTeX表記で入力されており、自動で整形表示されます。</li>
+                <li><strong>検索バー</strong>で「量（例：運動量）」「記号（例：τ）」「法則名（例：スネル）」をリアルタイムで絞り込めます。</li>
+                <li><strong>数式</strong>は自動で整形表示されます。</li>
                 <li><strong>記号表</strong>は「単位」「語源」「解釈」をセットで確認できるようにしています。</li>
               </ul>
             </div>
@@ -130,9 +297,7 @@
 
             <section id="ch1-s1" class="subsection">
               <h3>第1節：平面運動と放物運動</h3>
-              <p>
-                変位・速度・加速度は<strong>ベクトル量</strong>として理解する。等加速度直線運動では、加速度一定を前提に、速度と変位を時間の関数で表す。
-              </p>
+              <p>変位・速度・加速度は<strong>ベクトル量</strong>として理解する。等加速度直線運動では、加速度一定を前提に、速度と変位を時間の関数で表す。</p>
 
               <div class="grid">
                 <div class="card">
@@ -167,48 +332,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>変位</td>
-                        <td>$x, y$</td>
-                        <td>$[m]$</td>
-                        <td>Coordinate</td>
-                        <td>座標軸上の位置（差が変位）。</td>
-                      </tr>
-                      <tr>
-                        <td>時間</td>
-                        <td>$t$</td>
-                        <td>$[s]$</td>
-                        <td>Time</td>
-                        <td>現象の経過。</td>
-                      </tr>
-                      <tr>
-                        <td>速度</td>
-                        <td>$v$</td>
-                        <td>$[m/s]$</td>
-                        <td>Velocity / <span class="latin">velocitas</span></td>
-                        <td>単位時間あたりの変位（向きも含む）。</td>
-                      </tr>
-                      <tr>
-                        <td>加速度</td>
-                        <td>$a$</td>
-                        <td>$[m/s^2]$</td>
-                        <td>Acceleration</td>
-                        <td>単位時間あたりの速度変化。</td>
-                      </tr>
-                      <tr>
-                        <td>初速度</td>
-                        <td>$v_0$</td>
-                        <td>$[m/s]$</td>
-                        <td>添字 $0$（初期値）</td>
-                        <td>$t=0$ の速度。</td>
-                      </tr>
-                      <tr>
-                        <td>変化量</td>
-                        <td>$\Delta$</td>
-                        <td>—</td>
-                        <td>Delta（ギリシャ文字）</td>
-                        <td>増分・差（差分で法則が見える）。</td>
-                      </tr>
+                      <tr><td>変位</td><td>$x, y$</td><td>$[m]$</td><td>Coordinate</td><td>座標軸上の位置（差が変位）。</td></tr>
+                      <tr><td>時間</td><td>$t$</td><td>$[s]$</td><td>Time</td><td>現象の経過。</td></tr>
+                      <tr><td>速度</td><td>$v$</td><td>$[m/s]$</td><td>Velocity / <span class="latin">velocitas</span></td><td>単位時間あたりの変位（向きも含む）。</td></tr>
+                      <tr><td>加速度</td><td>$a$</td><td>$[m/s^2]$</td><td>Acceleration</td><td>単位時間あたりの速度変化。</td></tr>
+                      <tr><td>初速度</td><td>$v_0$</td><td>$[m/s]$</td><td>添字 $0$（初期値）</td><td>$t=0$ の速度。</td></tr>
+                      <tr><td>変化量</td><td>$\Delta$</td><td>—</td><td>Delta（ギリシャ文字）</td><td>増分・差（差分で法則が見える）。</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -217,19 +346,14 @@
 
             <section id="ch1-s2" class="subsection">
               <h3>第2節：剛体のつりあい</h3>
-              <p>
-                剛体では平行移動だけでなく回転の平衡が必要。そこで<strong>力のモーメント（トルク）</strong>を導入する。
-              </p>
+              <p>剛体では平行移動だけでなく回転の平衡が必要。そこで<strong>力のモーメント（トルク）</strong>を導入する。</p>
 
               <div class="card">
                 <div class="card__title">モーメントと重心の公式</div>
                 <ul class="formula-list">
                   <li><span class="label">力のモーメント</span> <span class="fx">$M = F \cdot l$</span></li>
                   <li><span class="label">つりあい条件</span> <span class="fx">$\sum F = 0,\ \sum M = 0$</span></li>
-                  <li>
-                    <span class="label">重心</span>
-                    <span class="fx">$x_G = \frac{m_1x_1 + m_2x_2 + \cdots}{m_1 + m_2 + \cdots}$</span>
-                  </li>
+                  <li><span class="label">重心</span> <span class="fx">$x_G = \frac{m_1x_1 + m_2x_2 + \cdots}{m_1 + m_2 + \cdots}$</span></li>
                 </ul>
               </div>
 
@@ -238,50 +362,14 @@
                 <div class="table-wrap">
                   <table class="tbl">
                     <thead>
-                      <tr>
-                        <th>物理量</th>
-                        <th>記号</th>
-                        <th>単位（SI）</th>
-                        <th>語源</th>
-                        <th>解説</th>
-                      </tr>
+                      <tr><th>物理量</th><th>記号</th><th>単位（SI）</th><th>語源</th><th>解説</th></tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>力</td>
-                        <td>$F$</td>
-                        <td>$[N]$</td>
-                        <td>Force</td>
-                        <td>運動状態を変える原因。</td>
-                      </tr>
-                      <tr>
-                        <td>質量</td>
-                        <td>$m$</td>
-                        <td>$[kg]$</td>
-                        <td>Mass</td>
-                        <td>動きにくさ（慣性）の尺度。</td>
-                      </tr>
-                      <tr>
-                        <td>モーメント</td>
-                        <td>$M,\ \tau$</td>
-                        <td>$[N\cdot m]$</td>
-                        <td>Moment / Torque</td>
-                        <td>$\tau$（タウ）は torque に対応する記号として好まれる。</td>
-                      </tr>
-                      <tr>
-                        <td>腕の長さ</td>
-                        <td>$l,\ r$</td>
-                        <td>$[m]$</td>
-                        <td>Length / Radius</td>
-                        <td>回転軸から作用線までの距離。</td>
-                      </tr>
-                      <tr>
-                        <td>重心</td>
-                        <td>$G,\ CM$</td>
-                        <td>—</td>
-                        <td>Gravity / Center of Mass</td>
-                        <td>加重平均としての「一点」。</td>
-                      </tr>
+                      <tr><td>力</td><td>$F$</td><td>$[N]$</td><td>Force</td><td>運動状態を変える原因。</td></tr>
+                      <tr><td>質量</td><td>$m$</td><td>$[kg]$</td><td>Mass</td><td>動きにくさ（慣性）の尺度。</td></tr>
+                      <tr><td>モーメント</td><td>$M,\ \tau$</td><td>$[N\cdot m]$</td><td>Moment / Torque</td><td>$\tau$（タウ）は torque に対応する記号として好まれる。</td></tr>
+                      <tr><td>腕の長さ</td><td>$l,\ r$</td><td>$[m]$</td><td>Length / Radius</td><td>回転軸から作用線までの距離。</td></tr>
+                      <tr><td>重心</td><td>$G,\ CM$</td><td>—</td><td>Gravity / Center of Mass</td><td>加重平均としての「一点」。</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -290,9 +378,7 @@
 
             <section id="ch1-s3" class="subsection">
               <h3>第3節：運動量の保存</h3>
-              <p>
-                衝突・分裂などで強力な道具となるのが運動量保存。外力が働かない系では、全運動量が不変となる。
-              </p>
+              <p>衝突・分裂などで強力な道具となるのが運動量保存。外力が働かない系では、全運動量が不変となる。</p>
               <div class="grid">
                 <div class="card">
                   <div class="card__title">運動量と力積</div>
@@ -315,9 +401,7 @@
 
             <section id="ch1-s4" class="subsection">
               <h3>第4節：円運動と単振動</h3>
-              <p>
-                周期運動は波や原子振動の基礎。角速度と向心加速度で「回転の速さ」を定量化する。単振動は復元力が変位に比例する近似モデル。
-              </p>
+              <p>周期運動は波や原子振動の基礎。角速度と向心加速度で「回転の速さ」を定量化する。単振動は復元力が変位に比例する近似モデル。</p>
 
               <div class="card">
                 <div class="card__title">円運動・単振動・万有引力</div>
@@ -332,17 +416,13 @@
 
               <div class="callout">
                 <div class="callout__title">符号の意味</div>
-                <p>
-                  $F=-kx$ のマイナスは「常に元の位置へ戻す向き」を示す。式の形に、安定性（平衡へ戻る性質）が刻まれている。
-                </p>
+                <p>$F=-kx$ のマイナスは「常に元の位置へ戻す向き」を示す。式の形に、安定性（平衡へ戻る性質）が刻まれている。</p>
               </div>
             </section>
 
             <section id="ch1-s5" class="subsection">
               <h3>第5節：気体の性質と分子の運動</h3>
-              <p>
-                ミクロな分子運動が、マクロな圧力 $P$ や温度 $T$ として現れる。状態方程式は「量のスケール合わせ」の式でもある。
-              </p>
+              <p>ミクロな分子運動が、マクロな圧力 $P$ や温度 $T$ として現れる。状態方程式は「量のスケール合わせ」の式でもある。</p>
 
               <div class="card">
                 <div class="card__title">気体分子運動論の公式</div>
@@ -360,9 +440,7 @@
 
           <section id="ch2" class="section">
             <h2>第II章：波動</h2>
-            <p>
-              波動は媒質そのものが移動するのではなく、振動という「状態」が伝播する現象。位相・干渉など幾何学的性質が中心となる。
-            </p>
+            <p>波動は媒質そのものが移動するのではなく、振動という「状態」が伝播する現象。位相・干渉など幾何学的性質が中心となる。</p>
 
             <section id="ch2-s1" class="subsection">
               <h3>第1節：波の性質</h3>
@@ -371,10 +449,7 @@
                   <div class="card__title">波の基本公式</div>
                   <ul class="formula-list">
                     <li><span class="label">波の速さ</span> <span class="fx">$v = f\lambda = \frac{\lambda}{T}$</span></li>
-                    <li>
-                      <span class="label">正弦波</span>
-                      <span class="fx">$y = A \sin 2\pi \left(\frac{t}{T} - \frac{x}{\lambda}\right)$</span>
-                    </li>
+                    <li><span class="label">正弦波</span> <span class="fx">$y = A \sin 2\pi \left(\frac{t}{T} - \frac{x}{\lambda}\right)$</span></li>
                   </ul>
                 </div>
                 <div class="card">
@@ -400,18 +475,13 @@
 
             <section id="ch2-s3" class="subsection">
               <h3>第3節：光波</h3>
-              <p>
-                光は電磁波であり、波動性と粒子性を併せ持つ。高校物理では反射・屈折・干渉が主題。
-              </p>
+              <p>光は電磁波であり、波動性と粒子性を併せ持つ。高校物理では反射・屈折・干渉が主題。</p>
 
               <div class="card">
                 <div class="card__title">光学の主要公式</div>
                 <ul class="formula-list">
                   <li><span class="label">スネルの法則</span> <span class="fx">$n_1 \sin \theta_1 = n_2 \sin \theta_2$</span></li>
-                  <li>
-                    <span class="label">屈折率と速さ</span>
-                    <span class="fx">$n_{12} = \frac{n_2}{n_1} = \frac{v_1}{v_2} = \frac{\lambda_1}{\lambda_2}$</span>
-                  </li>
+                  <li><span class="label">屈折率と速さ</span> <span class="fx">$n_{12} = \frac{n_2}{n_1} = \frac{v_1}{v_2} = \frac{\lambda_1}{\lambda_2}$</span></li>
                   <li><span class="label">レンズ</span> <span class="fx">$\frac{1}{a} + \frac{1}{b} = \frac{1}{f}$</span></li>
                   <li><span class="label">ヤング（明線）</span> <span class="fx">$d \frac{x}{L} = m\lambda$</span></li>
                 </ul>
@@ -419,9 +489,7 @@
 
               <div class="callout">
                 <div class="callout__title">同じ $f$ に注意</div>
-                <p>
-                  レンズの焦点距離の $f$（focal）と、振動数の $f$（frequency）は同じ文字でも意味が違う。単位（m / Hz）で区別するのが安全。
-                </p>
+                <p>レンズの焦点距離の $f$（focal）と、振動数の $f$（frequency）は同じ文字でも意味が違う。単位（m / Hz）で区別するのが安全。</p>
               </div>
             </section>
           </section>
@@ -430,9 +498,7 @@
 
           <section id="ch3" class="section">
             <h2>第III章：電気と磁気</h2>
-            <p>
-              電磁気学は「場（Field）」という抽象概念を数理モデル化する分野。記号体系はマクスウェルなどの整理の影響が大きい。
-            </p>
+            <p>電磁気学は「場（Field）」という抽象概念を数理モデル化する分野。記号体系はマクスウェルなどの整理の影響が大きい。</p>
 
             <section id="ch3-s1" class="subsection">
               <h3>第1節：電場と電位</h3>
@@ -462,9 +528,7 @@
 
               <div class="callout">
                 <div class="callout__title">$I$ の由来</div>
-                <p>
-                  電流が $I$ なのは、アンペールが「電流の強さ（<span class="latin">Intensité du courant</span>）」と呼んだ歴史を反映する。
-                </p>
+                <p>電流が $I$ なのは、アンペールが「電流の強さ（<span class="latin">Intensité du courant</span>）」と呼んだ歴史を反映する。</p>
               </div>
             </section>
 
@@ -482,9 +546,7 @@
 
               <div class="callout">
                 <div class="callout__title">$B$ の歴史的偶然</div>
-                <p>
-                  磁束密度 $B$ は、マクスウェルが変数をアルファベット順に割り当てた整理の中で、磁気誘導に $B$ が対応したことが定着の一因とされる。
-                </p>
+                <p>磁束密度 $B$ は、マクスウェルが変数をアルファベット順に割り当てた整理の中で、磁気誘導に $B$ が対応したことが定着の一因とされる。</p>
               </div>
             </section>
 
@@ -502,9 +564,7 @@
 
               <div class="callout">
                 <div class="callout__title">マイナス符号（レンツの法則）</div>
-                <p>
-                  マイナスは「変化を打ち消す向きに誘導が起きる」という自然の保守性（エネルギー保存の現れ）を表す。
-                </p>
+                <p>マイナスは「変化を打ち消す向きに誘導が起きる」という自然の保守性（エネルギー保存の現れ）を表す。</p>
               </div>
             </section>
           </section>
@@ -513,9 +573,7 @@
 
           <section id="ch4" class="section">
             <h2>第IV章：原子</h2>
-            <p>
-              近代物理は、連続の世界観を越え、エネルギーと物質が量子（不連続）で記述されることを示した。
-            </p>
+            <p>近代物理は、連続の世界観を越え、エネルギーと物質が量子（不連続）で記述されることを示した。</p>
 
             <section id="ch4-s1" class="subsection">
               <h3>第1節：電子と光</h3>
@@ -545,9 +603,7 @@
 
               <div class="callout">
                 <div class="callout__title">質量欠損の読み方</div>
-                <p>
-                  「合計質量 − 実際の核の質量」＝ $\Delta m$ が、$\Delta E$ として放出された（＝系の結合に使われた）と解釈する。
-                </p>
+                <p>「合計質量 − 実際の核の質量」＝ $\Delta m$ が、$\Delta E$ として放出された（＝系の結合に使われた）と解釈する。</p>
               </div>
             </section>
           </section>
@@ -562,16 +618,47 @@
               数式は秩序を記述する詩であり、記号は深淵へ繋がる文字である。
             </p>
             <div class="footer-note">
-              <p>
-                このHTML版は「1ページ完結・検索可能・MathJax対応」でまず全体像を固めた版です。
-                次は「演習（典型問題）」「単位チェック」「次元解析」「暗記カード」などを章ごとに追加して強化できます。
-              </p>
+              <p>このHTML版は「1ページ完結・検索可能・MathJax対応」で全体像を固めた版です。</p>
             </div>
           </section>
         </article>
       </main>
     </div>
 
-    <script src="./app.js"></script>
+    <!-- JavaScript (検索機能・目次トグル) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // スマホ用：目次の開閉
+        const toggleBtn = document.getElementById('toggleToc');
+        const toc = document.getElementById('toc');
+        toggleBtn.addEventListener('click', () => {
+          toc.classList.toggle('is-active');
+        });
+
+        // 検索機能（リアルタイムフィルタリング）
+        const searchInput = document.getElementById('searchInput');
+        const searchableElements = document.querySelectorAll('.subsection, .card, .callout');
+
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          
+          searchableElements.forEach(el => {
+            const text = el.textContent.toLowerCase();
+            if (text.includes(query)) {
+              el.style.display = '';
+            } else {
+              el.style.display = 'none';
+            }
+          });
+
+          // セクション見出しの表示制御（中身が全て非表示なら見出しも隠す）
+          document.querySelectorAll('.section').forEach(section => {
+            const hasVisibleContent = Array.from(section.querySelectorAll('.subsection, .card, .callout'))
+                                           .some(el => el.style.display !== 'none');
+            section.style.display = hasVisibleContent || query === '' ? '' : 'none';
+          });
+        });
+      });
+    </script>
   </body>
 </html>
