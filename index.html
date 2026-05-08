@@ -208,6 +208,43 @@
       .label { font-weight: 600; color: var(--text-muted); font-size: 0.95rem; }
       .fx { font-size: 1.15rem; }
 
+      /* Symbol Table (New) */
+      .symbol-table {
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+      }
+      .symbol-table__title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+      }
+      .symbol-table table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+      }
+      .symbol-table th, .symbol-table td {
+        padding: 0.4rem 0.5rem;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+      }
+      .symbol-table th {
+        color: var(--text-muted);
+        font-weight: 600;
+        background: var(--bg-body);
+      }
+      .symbol-table td:nth-child(1) {
+        font-weight: bold;
+        color: var(--primary);
+        white-space: nowrap;
+      }
+      .symbol-table td:nth-child(2) {
+        font-style: italic;
+        color: var(--text-muted);
+      }
+
       /* Callouts */
       .callout {
         background: var(--callout-bg);
@@ -224,14 +261,6 @@
       .callout__title { font-weight: 700; color: var(--callout-border); margin-bottom: 0.5rem; }
       .callout.warning .callout__title { color: var(--warning-border); }
       .callout ul { margin: 0; padding-left: 1.5rem; }
-
-      /* Table */
-      .table-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
-      .tbl { width: 100%; border-collapse: collapse; font-size: 0.95rem; white-space: nowrap; }
-      .tbl th, .tbl td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
-      .tbl th { background: var(--bg-body); font-weight: 600; color: var(--text-main); }
-      .tbl tbody tr:hover { background: var(--table-hover); }
-      .latin { font-style: italic; color: var(--text-muted); }
 
       /* Footer Note */
       .footer-note { margin-top: 3rem; padding: 1.5rem; background: var(--footer-bg); border-radius: 8px; text-align: center; font-size: 0.95rem; transition: background-color 0.3s; }
@@ -359,6 +388,22 @@
                     <li><span class="label">変位と時間</span> <span class="fx">$x = v_0t + \frac{1}{2}at^2$</span></li>
                     <li><span class="label">時間を消去</span> <span class="fx">$v^2 - v_0^2 = 2ax$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$m$</td><td>mass</td><td>質量</td></tr>
+                        <tr><td>$a$</td><td>acceleration</td><td>加速度</td></tr>
+                        <tr><td>$F$</td><td>force</td><td>力</td></tr>
+                        <tr><td>$v$</td><td>velocity</td><td>速度</td></tr>
+                        <tr><td>$t$</td><td>time</td><td>時間</td></tr>
+                        <tr><td>$x$</td><td>position / displacement</td><td>位置・変位</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="card">
                   <div class="card__title">解説と適用条件</div>
@@ -387,6 +432,21 @@
                     <li><span class="label">弾性エネルギー</span> <span class="fx">$U = \frac{1}{2}kx^2$</span></li>
                     <li><span class="label">力学的エネルギー保存</span> <span class="fx">$K_1 + U_1 = K_2 + U_2$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$W$</td><td>work</td><td>仕事</td></tr>
+                        <tr><td>$K$</td><td>kinetic energy</td><td>運動エネルギー</td></tr>
+                        <tr><td>$U$</td><td>potential energy</td><td>位置エネルギー</td></tr>
+                        <tr><td>$h$</td><td>height</td><td>高さ</td></tr>
+                        <tr><td>$k$</td><td>spring constant</td><td>ばね定数</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="card">
                   <div class="card__title">運動量と力積</div>
@@ -397,6 +457,19 @@
                     <li><span class="label">運動量保存則</span> <span class="fx">$m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'$</span></li>
                     <li><span class="label">反発係数</span> <span class="fx">$e = -\frac{v_1' - v_2'}{v_1 - v_2}$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$p$</td><td>momentum</td><td>運動量</td></tr>
+                        <tr><td>$I$</td><td>impulse</td><td>力積</td></tr>
+                        <tr><td>$e$</td><td>elasticity / restitution</td><td>反発係数（弾性）</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 
@@ -422,6 +495,19 @@
                   <li><span class="label">剛体のつりあい条件</span> <span class="fx">$\sum \vec{F} = 0,\ \sum M = 0$</span></li>
                   <li><span class="label">重心の座標</span> <span class="fx">$x_G = \frac{m_1x_1 + m_2x_2 + \cdots}{m_1 + m_2 + \cdots}$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$M$</td><td>moment</td><td>モーメント（回転能力）</td></tr>
+                      <tr><td>$l$</td><td>length / lever arm</td><td>腕の長さ</td></tr>
+                      <tr><td>$G$</td><td>center of gravity</td><td>重心</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <p>
                 モーメントの腕の長さ $l$ は、回転軸から「力の作用線」に下ろした<strong>垂線の長さ</strong>です。斜めに力が働く場合は、力を分解するか、腕の長さを三角比で求める必要があります。
@@ -443,6 +529,20 @@
                     <li><span class="label">向心力（運動方程式）</span> <span class="fx">$m\frac{v^2}{r} = F$</span></li>
                     <li><span class="label">万有引力</span> <span class="fx">$F = G \frac{Mm}{r^2}$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$r$</td><td>radius</td><td>半径</td></tr>
+                        <tr><td>$\omega$</td><td>angular velocity</td><td>角速度（ギリシャ文字オメガ）</td></tr>
+                        <tr><td>$G$</td><td>gravitational constant</td><td>万有引力定数</td></tr>
+                        <tr><td>$M, m$</td><td>mass</td><td>質量</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="card">
                   <div class="card__title">単振動</div>
@@ -453,6 +553,20 @@
                     <li><span class="label">ばね振り子の周期</span> <span class="fx">$T = 2\pi\sqrt{\frac{m}{k}}$</span></li>
                     <li><span class="label">単振り子の周期</span> <span class="fx">$T = 2\pi\sqrt{\frac{l}{g}}$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$A$</td><td>amplitude</td><td>振幅</td></tr>
+                        <tr><td>$T$</td><td>time period</td><td>周期</td></tr>
+                        <tr><td>$l$</td><td>length</td><td>糸の長さ</td></tr>
+                        <tr><td>$g$</td><td>gravity</td><td>重力加速度</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 
@@ -479,6 +593,24 @@
                   <li><span class="label">分子の平均運動エネルギー</span> <span class="fx">$\frac{1}{2}m\overline{v^2} = \frac{3}{2}kT$</span></li>
                   <li><span class="label">内部エネルギー（単原子分子）</span> <span class="fx">$U = \frac{3}{2}nRT$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$P$</td><td>pressure</td><td>圧力</td></tr>
+                      <tr><td>$V$</td><td>volume</td><td>体積</td></tr>
+                      <tr><td>$n$</td><td>number of moles</td><td>物質量（モル数）</td></tr>
+                      <tr><td>$R$</td><td>gas constant</td><td>気体定数</td></tr>
+                      <tr><td>$T$</td><td>temperature</td><td>絶対温度</td></tr>
+                      <tr><td>$Q$</td><td>quantity of heat</td><td>熱量</td></tr>
+                      <tr><td>$U$</td><td>internal energy</td><td>内部エネルギー</td></tr>
+                      <tr><td>$k$</td><td>Boltzmann constant</td><td>ボルツマン定数</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <p>
                 <strong>熱力学第一法則</strong>はエネルギー保存則の熱力学版です。「気体に与えた熱 $Q$ は、気体の温度上昇（内部エネルギーの増加 $\Delta U$）と、気体が外部にした仕事 $W_{out}$ に使われる」という意味です。符号の定義（外部からされた仕事を $W$ とするか等）に注意してください。
@@ -505,6 +637,21 @@
                     <li><span class="label">固定端反射</span> <span class="fx">位相が $\pi$ ずれる（山が谷になる）</span></li>
                     <li><span class="label">自由端反射</span> <span class="fx">位相はそのまま（山は山のまま）</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$v$</td><td>velocity</td><td>波の速さ</td></tr>
+                        <tr><td>$f$</td><td>frequency</td><td>振動数</td></tr>
+                        <tr><td>$\lambda$</td><td>wavelength</td><td>波長（ギリシャ文字ラムダ、lengthのlに相当）</td></tr>
+                        <tr><td>$T$</td><td>period</td><td>周期</td></tr>
+                        <tr><td>$A$</td><td>amplitude</td><td>振幅</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="card">
                   <div class="card__title">波の式の意味</div>
@@ -527,6 +674,21 @@
                   <li><span class="label">弦の固有振動（両端固定）</span> <span class="fx">$\lambda = \frac{2L}{m} \quad (m=1,2,\dots)$</span></li>
                   <li><span class="label">閉管の固有振動</span> <span class="fx">$\lambda = \frac{4L}{2m-1} \quad (m=1,2,\dots)$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$V$</td><td>velocity of sound</td><td>音速</td></tr>
+                      <tr><td>$v_o$</td><td>velocity of observer</td><td>観測者の速度</td></tr>
+                      <tr><td>$v_s$</td><td>velocity of source</td><td>音源の速度</td></tr>
+                      <tr><td>$n$</td><td>number of beats</td><td>うなりの回数</td></tr>
+                      <tr><td>$L$</td><td>length</td><td>管や弦の長さ</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div class="callout warning">
@@ -555,6 +717,20 @@
                   <li><span class="label">ヤングの実験（明線）</span> <span class="fx">$d \frac{x}{L} = m\lambda$</span></li>
                   <li><span class="label">回折格子（明線）</span> <span class="fx">$d \sin \theta = m\lambda$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$n$</td><td>refractive index</td><td>屈折率</td></tr>
+                      <tr><td>$c$</td><td>celeritas (ラテン語) / speed of light</td><td>光速</td></tr>
+                      <tr><td>$d$</td><td>distance</td><td>スリット間隔・格子定数</td></tr>
+                      <tr><td>$m$</td><td>integer</td><td>整数（干渉の次数）</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <p>
                 <strong>干渉の条件</strong>は、2つの波源からの「距離の差（経路差）」が波長 $\lambda$ の整数倍であれば、山と山が重なって強め合うという極めてシンプルな幾何学です。ヤングの実験や薄膜の干渉は、すべてこの経路差を求める図形問題に帰着します。
@@ -585,6 +761,20 @@
                     <li><span class="label">電位（点電荷）</span> <span class="fx">$V = k \frac{Q}{r}$</span></li>
                     <li><span class="label">一様な電場と電位</span> <span class="fx">$V = Ed$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$q, Q$</td><td>quantity of charge</td><td>電荷</td></tr>
+                        <tr><td>$E$</td><td>electric field</td><td>電場</td></tr>
+                        <tr><td>$V$</td><td>voltage / potential</td><td>電位・電圧</td></tr>
+                        <tr><td>$d$</td><td>distance</td><td>距離</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="card">
                   <div class="card__title">コンデンサ</div>
@@ -593,6 +783,19 @@
                     <li><span class="label">電気容量（平行板）</span> <span class="fx">$C = \varepsilon \frac{S}{d}$</span></li>
                     <li><span class="label">静電エネルギー</span> <span class="fx">$U = \frac{1}{2}QV = \frac{1}{2}CV^2$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$C$</td><td>capacitance</td><td>電気容量</td></tr>
+                        <tr><td>$\varepsilon$</td><td>permittivity</td><td>誘電率（ギリシャ文字イプシロン）</td></tr>
+                        <tr><td>$S$</td><td>surface area</td><td>極板面積</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </section>
@@ -610,6 +813,20 @@
                   <li><span class="label">キルヒホッフ第1法則</span> <span class="fx">$\sum I_{in} = \sum I_{out}$ （電荷保存）</span></li>
                   <li><span class="label">キルヒホッフ第2法則</span> <span class="fx">$\sum V_{起電力} = \sum V_{降下}$ （エネルギー保存）</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$R$</td><td>resistance</td><td>抵抗</td></tr>
+                      <tr><td>$I$</td><td>intensity of current</td><td>電流</td></tr>
+                      <tr><td>$\rho$</td><td>resistivity</td><td>抵抗率（ギリシャ文字ロー）</td></tr>
+                      <tr><td>$P$</td><td>power</td><td>電力</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </section>
 
@@ -629,6 +846,20 @@
                   <li><span class="label">電流が受ける力</span> <span class="fx">$F = IBl \sin \theta$</span></li>
                   <li><span class="label">ローレンツ力</span> <span class="fx">$f = qvB \sin \theta$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$H$</td><td>magnetic field</td><td>磁場</td></tr>
+                      <tr><td>$B$</td><td>magnetic flux density</td><td>磁束密度</td></tr>
+                      <tr><td>$\mu$</td><td>permeability</td><td>透磁率（ギリシャ文字ミュー）</td></tr>
+                      <tr><td>$F, f$</td><td>force</td><td>力（電磁力・ローレンツ力）</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </section>
 
@@ -648,6 +879,19 @@
                     <li><span class="label">自己誘導起電力</span> <span class="fx">$V = -L \frac{\Delta I}{\Delta t}$</span></li>
                     <li><span class="label">コイルのエネルギー</span> <span class="fx">$U = \frac{1}{2}LI^2$</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$\Phi$</td><td>magnetic flux</td><td>磁束（ギリシャ文字ファイ）</td></tr>
+                        <tr><td>$N$</td><td>number of turns</td><td>コイルの巻数</td></tr>
+                        <tr><td>$L$</td><td>inductance</td><td>自己インダクタンス（レンツ Lenz に由来）</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div class="card">
                   <div class="card__title">交流回路</div>
@@ -657,6 +901,19 @@
                     <li><span class="label">コイルのリアクタンス</span> <span class="fx">$X_L = \omega L$ （電流が $\pi/2$ 遅れる）</span></li>
                     <li><span class="label">コンデンサのリアクタンス</span> <span class="fx">$X_C = \frac{1}{\omega C}$ （電流が $\pi/2$ 進む）</span></li>
                   </ul>
+                  <div class="symbol-table">
+                    <div class="symbol-table__title">📝 記号の意味と語源</div>
+                    <table>
+                      <thead>
+                        <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>$V_e, I_e$</td><td>effective value</td><td>実効値</td></tr>
+                        <tr><td>$X_L, X_C$</td><td>reactance</td><td>リアクタンス</td></tr>
+                        <tr><td>$\omega$</td><td>angular frequency</td><td>角周波数</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </section>
@@ -685,6 +942,20 @@
                   <li><span class="label">ド・ブロイ波長</span> <span class="fx">$\lambda = \frac{h}{p} = \frac{h}{mv}$</span></li>
                   <li><span class="label">ブラッグ反射（X線回折）</span> <span class="fx">$2d \sin \theta = n\lambda$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$E$</td><td>energy</td><td>エネルギー</td></tr>
+                      <tr><td>$h$</td><td>Planck constant</td><td>プランク定数（Hilfsgröße: 補助量に由来）</td></tr>
+                      <tr><td>$\nu$</td><td>frequency</td><td>振動数（ギリシャ文字ニュー）</td></tr>
+                      <tr><td>$W$</td><td>work function</td><td>仕事関数</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <p>
                 光電効果の式において、$W$ は仕事関数（電子を金属表面から引き剥がすのに必要な最低エネルギー）です。光子のエネルギー $h\nu$ が $W$ より小さければ、いくら強い光（光子の数が多い光）を当てても電子は飛び出しません。
@@ -706,6 +977,19 @@
                   <li><span class="label">結合エネルギー</span> <span class="fx">$\Delta E = \Delta m \cdot c^2$</span></li>
                   <li><span class="label">放射性崩壊（半減期）</span> <span class="fx">$N = N_0 \left(\frac{1}{2}\right)^{t/T}$</span></li>
                 </ul>
+                <div class="symbol-table">
+                  <div class="symbol-table__title">📝 記号の意味と語源</div>
+                  <table>
+                    <thead>
+                      <tr><th>記号</th><th>英単語</th><th>意味</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>$n$</td><td>principal quantum number</td><td>主量子数</td></tr>
+                      <tr><td>$\Delta m$</td><td>mass defect</td><td>質量欠損（$\Delta$は差分 difference）</td></tr>
+                      <tr><td>$T$</td><td>half-life</td><td>半減期</td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div class="callout">
