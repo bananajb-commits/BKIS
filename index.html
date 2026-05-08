@@ -27,7 +27,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <style>
-      /* --- CSS Variables --- */
+      /* --- CSS Variables (Light Mode) --- */
       :root {
         --primary: #2563eb;
         --primary-hover: #1d4ed8;
@@ -40,7 +40,29 @@
         --callout-border: #3b82f6;
         --warning-bg: #fffbeb;
         --warning-border: #f59e0b;
+        --heading-color: #0f172a;
+        --strong-bg: #bfdbfe;
+        --table-hover: #f8fafc;
+        --footer-bg: #e2e8f0;
         --font-base: 'Noto Sans JP', sans-serif;
+      }
+
+      /* --- CSS Variables (Dark Mode) --- */[data-theme="dark"] {
+        --primary: #60a5fa;
+        --primary-hover: #93c5fd;
+        --bg-body: #0f172a;
+        --bg-surface: #1e293b;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border: #334155;
+        --callout-bg: #172554;
+        --callout-border: #3b82f6;
+        --warning-bg: #451a03;
+        --warning-border: #d97706;
+        --heading-color: #f8fafc;
+        --strong-bg: #1e3a8a;
+        --table-hover: #334155;
+        --footer-bg: #334155;
       }
 
       /* --- Base --- */
@@ -52,14 +74,15 @@
         line-height: 1.8;
         margin: 0;
         padding: 0;
+        transition: background-color 0.3s, color 0.3s;
       }
-      h1, h2, h3, h4 { color: #0f172a; margin-top: 0; }
+      h1, h2, h3, h4 { color: var(--heading-color); margin-top: 0; transition: color 0.3s; }
       h2 { border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-top: 3rem; }
-      h3 { margin-top: 2.5rem; color: #1e293b; border-left: 4px solid var(--primary); padding-left: 0.75rem; }
+      h3 { margin-top: 2.5rem; border-left: 4px solid var(--primary); padding-left: 0.75rem; }
       p { margin-bottom: 1.2rem; }
       a { color: var(--primary); text-decoration: none; }
       a:hover { text-decoration: underline; }
-      strong { color: #0f172a; background: linear-gradient(transparent 60%, #bfdbfe 40%); }
+      strong { color: var(--heading-color); background: linear-gradient(transparent 60%, var(--strong-bg) 40%); }
       .skip-link { position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px; z-index: 1000; }
       .skip-link:focus { top: 0; }
 
@@ -72,6 +95,7 @@
         z-index: 100;
         padding: 0.75rem 1.5rem;
         box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        transition: background-color 0.3s, border-color 0.3s;
       }
       .topbar__inner {
         display: flex;
@@ -95,15 +119,32 @@
         border-radius: 20px;
         outline: none;
         width: 250px;
+        background-color: var(--bg-surface);
+        color: var(--text-main);
         transition: all 0.2s;
       }
+      .search__input::placeholder { color: var(--text-muted); }
       .search__input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,0.2); }
+      
       .btn {
         background: var(--primary); color: white; border: none;
         padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;
         font-weight: 600; transition: background 0.2s;
       }
       .btn:hover { background: var(--primary-hover); }
+      
+      .btn--icon {
+        background: transparent;
+        color: var(--text-main);
+        border: 1px solid var(--border);
+        padding: 0.4rem 0.6rem;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .btn--icon:hover { background: var(--border); color: var(--text-main); }
+      
       #toggleToc { display: none; }
 
       /* --- Layout --- */
@@ -149,7 +190,7 @@
         border-radius: 12px;
         padding: 1.5rem;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-        transition: transform 0.2s;
+        transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
       }
       .card:hover { transform: translateY(-2px); }
       .card__title {
@@ -174,13 +215,14 @@
         padding: 1.25rem 1.5rem;
         border-radius: 0 8px 8px 0;
         margin: 1.5rem 0;
+        transition: background-color 0.3s, border-color 0.3s;
       }
       .callout.warning {
         background: var(--warning-bg);
         border-left-color: var(--warning-border);
       }
       .callout__title { font-weight: 700; color: var(--callout-border); margin-bottom: 0.5rem; }
-      .callout.warning .callout__title { color: #d97706; }
+      .callout.warning .callout__title { color: var(--warning-border); }
       .callout ul { margin: 0; padding-left: 1.5rem; }
 
       /* Table */
@@ -188,11 +230,11 @@
       .tbl { width: 100%; border-collapse: collapse; font-size: 0.95rem; white-space: nowrap; }
       .tbl th, .tbl td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); text-align: left; }
       .tbl th { background: var(--bg-body); font-weight: 600; color: var(--text-main); }
-      .tbl tbody tr:hover { background: #f8fafc; }
-      .latin { font-style: italic; color: #64748b; }
+      .tbl tbody tr:hover { background: var(--table-hover); }
+      .latin { font-style: italic; color: var(--text-muted); }
 
       /* Footer Note */
-      .footer-note { margin-top: 3rem; padding: 1.5rem; background: #e2e8f0; border-radius: 8px; text-align: center; font-size: 0.95rem; }
+      .footer-note { margin-top: 3rem; padding: 1.5rem; background: var(--footer-bg); border-radius: 8px; text-align: center; font-size: 0.95rem; transition: background-color 0.3s; }
 
       /* --- Responsive --- */
       @media (max-width: 860px) {
@@ -226,6 +268,7 @@
             <span class="search__label">検索</span>
             <input id="searchInput" class="search__input" type="search" placeholder="例：運動量 / τ / 屈折率" />
           </label>
+          <button id="themeToggle" class="btn btn--icon" type="button" aria-label="テーマ切り替え" title="ダークモード/ライトモード切替">🌙</button>
           <button id="toggleToc" class="btn" type="button">目次</button>
         </div>
       </div>
@@ -693,17 +736,45 @@
       </main>
     </div>
 
-    <!-- JavaScript (検索機能・目次トグル) -->
+    <!-- JavaScript (テーマ切替・検索機能・目次トグル) -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        // スマホ用：目次の開閉
+        
+        // --- テーマ（ダーク/ライト）切り替え機能 ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme');
+        
+        // 初期テーマの設定（保存されたテーマ、またはOSの設定を反映）
+        if (currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeToggleBtn.textContent = '☀️';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          themeToggleBtn.textContent = '🌙';
+        }
+
+        // ボタンクリック時の切り替え処理
+        themeToggleBtn.addEventListener('click', () => {
+          let theme = document.documentElement.getAttribute('data-theme');
+          if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeToggleBtn.textContent = '🌙';
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeToggleBtn.textContent = '☀️';
+          }
+        });
+
+        // --- スマホ用：目次の開閉 ---
         const toggleBtn = document.getElementById('toggleToc');
         const toc = document.getElementById('toc');
         toggleBtn.addEventListener('click', () => {
           toc.classList.toggle('is-active');
         });
 
-        // 検索機能（リアルタイムフィルタリング）
+        // --- 検索機能（リアルタイムフィルタリング） ---
         const searchInput = document.getElementById('searchInput');
         const searchableElements = document.querySelectorAll('.subsection, .card, .callout');
 
